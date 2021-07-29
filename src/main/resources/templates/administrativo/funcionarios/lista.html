@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	   xmls:th="http://thymeleaf.org"
+	   xmls:layout="http://www.ultraq.net/thymeleaf/layout">
 <head>
     <title>Spring-Boot Básico</title>
     <meta charset="UTF-8"/>
@@ -11,7 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
-    
+
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet"/>
 </head>
@@ -28,9 +30,9 @@
 			</div>
 		</nav>
 	</header>
-	
+
 	<div class="layout-main">
-	
+
 	    <aside>
 	        <nav class="sidebar  sidebar-open">
 	            <ul class="nav nav-pills">
@@ -38,7 +40,7 @@
 	                        class="oi oi-home"></i> <span>Home</span>
 	                </a></li>
 	            </ul>
-	
+
 	            <ul class="nav nav-pills">
 	                <li class="nav-item"><span class="nav-link active">Departamentos</span></li>
 	                <li class="nav-item"><a class="nav-link"
@@ -50,7 +52,7 @@
 	                    <span>Listar </span>
 	                </a></li>
 	            </ul>
-	
+
 	            <ul class="nav nav-pills">
 	                <li class="nav-item"><span class="nav-link active">Cargos</span></li>
 	                <li class="nav-item"><a class="nav-link"
@@ -61,7 +63,7 @@
 	                        class="oi oi-spreadsheet"></i> <span>Listar </span>
 	                </a></li>
 	            </ul>
-	
+
 	            <ul class="nav nav-pills">
 	                <li class="nav-item"><span class="nav-link active">Funcionários</span></li>
 	                <li class="nav-item"><a class="nav-link"
@@ -75,7 +77,7 @@
 	            </ul>
 	        </nav>
 	    </aside>
-	
+
 	    <section class="layout-content">
 	        <nav class="navbar navbar-expand-md bg-light">
 	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -91,9 +93,9 @@
 	                </a>
 	            </div>
 	        </nav>
-	
+
 	        <div class="container">
-	
+
 	            <p>
 	                <i class="oi oi-magnifying-glass"></i><span></span>
 	                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
@@ -109,7 +111,7 @@
 	            <div class="row">
 	                <div class="col">
 	                    <div class="collapse" id="collapseNome">
-	
+
 	                        <nav class="navbar navbar-light bg-light">
 	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/nome">
 	                                <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
@@ -117,14 +119,14 @@
 	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
-	
+
 	                    </div>
 	                </div>
 	            </div>
 	            <div class="row">
 	                <div class="col">
 	                    <div class="collapse" id="collapseCargo">
-	
+
 	                        <nav class="navbar navbar-light bg-light">
 	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/cargo">
 	                                <select class="form-control mr-sm-2" name="cargo" aria-label="Search">
@@ -144,14 +146,14 @@
 	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
-	
+
 	                    </div>
 	                </div>
 	            </div>
 	            <div class="row">
 	                <div class="col">
 	                    <div class="collapse" id="collapseData">
-	
+
 	                        <nav class="navbar navbar-light bg-light">
 	                            <form class="form-inline" method="GET" action="/funcionarios/buscar/data">
 	                                <input class="form-control mr-sm-2" type="date" aria-label="Search"
@@ -161,151 +163,51 @@
 	                                <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
 	                            </form>
 	                        </nav>
-	
+
 	                    </div>
 	                </div>
 	            </div>
-	
-	
+
+
 	            <div class="table-responsive">
 	                <table class="table table-striped table-hover table-sm">
 	                    <thead>
 	                    <tr>
 	                        <th>#</th>
 	                        <th>Nome</th>
-	                        <th>Salário</th>
-	                        <th>Departamento</th>
 	                        <th>Cargo</th>
-	                        <th>Endereço</th>
-	                        <th>Data de Entrada</th>
-	                        <th>Data de Saída</th>
+	                        <th>Salario Bruto</th>
 	                        <th>Ação</th>
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-	                    <tr>
-	                        <td>1</td>
-	                        <td>Jorge da Silva</td>
-	                        <td>R$ 3.500,99</td>
-	                        <td>Recursos Humanos</td>
-	                        <td>Auxiliar de RH</td>
-	                        <td>
-	                            <button type="button" class="btn btn-secondary btn-sm" data-container="body"
-	                                    data-toggle="popover" data-placement="top"
-	                                    data-content="Rua das Oliveiras, 260 Fundos - Centro, Porto Alegre - RS - 97050-015">
-	                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                        <td>01/10/2014</td>
+	                    <tr th:each="funcionario : ${listaFuncionarios}">
+	                        <td th:text="${funcionario.id}"></td>
+	                        <td th:text="${funcionario.nome}"></td>
+	                        <td th:text="${funcionario.cargo}"></td>
+	                        <td th:text="${funcionario.salarioBruto}"></td>
+	                        <td></td>
+<!--	                        <td>-->
+<!--	                            <button type="button" class="btn btn-secondary btn-sm" data-container="body"-->
+<!--	                                    data-toggle="popover" data-placement="top"-->
+<!--	                                    data-content="Rua das Oliveiras, 260 Fundos - Centro, Porto Alegre - RS - 97050-015">-->
+<!--	                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>-->
+<!--	                            </button>-->
+<!--	                        </td>-->
+<!--	                        <td>01/10/2014</td>-->
 	                        <td></td>
 	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/funcionarios/editar/1" role="button">
+	                            <a class="btn btn-info btn-sm" th:href="@{/administrativo/funcionarios/editar/{id}(id=${funcionario.id})}" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button id="btn_funcionarios/excluir/1" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>2</td>
-	                        <td>Ana Maria Lindoval</td>
-	                        <td>R$ 3.560,70</td>
-	                        <td>Administração</td>
-	                        <td>Auxiliar Administrativo</td>
-	                        <td>
-	                            <button type="button" class="btn btn-secondary btn-sm" data-container="body"
-	                                    data-toggle="popover" data-placement="top"
-	                                    data-content="Av. dos Palmares, 320  - Ribeirão, Canoas - RS - 98050-908">
-	                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                        <td>01/08/2014</td>
-	                        <td>02/03/2015</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/funcionarios/editar/2" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button id="btn_funcionarios/excluir/2" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>3</td>
-	                        <td>Juan Perez</td>
-	                        <td>R$ 4.060,99</td>
-	                        <td>Tecnologia da Informação</td>
-	                        <td>Desenvolvedor Java Jr.</td>
-	                        <td>
-	                            <button type="button" class="btn btn-secondary btn-sm" data-container="body"
-	                                    data-toggle="popover" data-placement="top"
-	                                    data-content="Rua Senador Cassiano do Nascimento, 135 AP. 106 - Noroeste, Porto Alegre - RS - 90798-099">
-	                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                        <td>05/01/2015</td>
-	                        <td></td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/funcionarios/editar/3" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button id="btn_funcionarios/excluir/3" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>4</td>
-	                        <td>Marcio Silva</td>
-	                        <td>R$ 2.890,99</td>
-	                        <td>Contabilidade</td>
-	                        <td>Auxiliar Contábil</td>
-	                        <td>
-	                            <button type="button" class="btn btn-secondary btn-sm" data-container="body"
-	                                    data-toggle="popover" data-placement="top"
-	                                    data-content="Av. Maracanã, 309 AP. 108 - Maracanã, Rio de Janeiro - RJ - 91050-980">
-	                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                        <td>18/10/2013</td>
-	                        <td>06/09/2015</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/funcionarios/editar/4" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button id="btn_funcionarios/excluir/4" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>5</td>
-	                        <td>Joana Prado</td>
-	                        <td>R$ 3.804,00</td>
-	                        <td>Recursos Humanos</td>
-	                        <td>Coordenador de RH</td>
-	                        <td>
-	                            <button type="button" class="btn btn-secondary btn-sm" data-container="body"
-	                                    data-toggle="popover" data-placement="top"
-	                                    data-content="Rua Gomes Carneiro, 909  - Centro, Porto Alegre - RS - 98080-999">
-	                                <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                        <td>01/05/2015</td>
-	                        <td></td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/funcionarios/editar/5" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button id="btn_funcionarios/excluir/5" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
+
+								<a class="btn btn-info btn-sm" th:href="@{/administrativo/funcionarios/remover/{id}(id=${funcionario.id})}" role="button">
+									<span class="oi oi-circle-x" title="Remover" aria-hidden="true"></span>
+								</a>
+<!--	                            <button id="btn_funcionarios/excluir/1" type="button" class="btn btn-danger btn-sm"-->
+<!--	                                    data-toggle="modal" data-target="#myModal">-->
+<!--	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>-->
+<!--	                            </button>-->
 	                        </td>
 	                    </tr>
 	                    </tbody>
@@ -315,12 +217,12 @@
 	    </section>
 
 	</div>
-	
+
     <footer class="layout-footer">
         <div class="container">
             <span class="footer-copy">&copy; 2018 MBallem. Todos os direitos reservados.</span>
         </div>
-    </footer>	
+    </footer>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -334,7 +236,7 @@
     $(function () {
         $('[data-toggle="popover"]').popover();
     });
-    
+
 	$(document).ready(function(){
 	    $(".navbar-toggle").click(function(){
 	        $(".sidebar").toggleClass("sidebar-open");
@@ -343,4 +245,4 @@
 
 </script>
 </body>
-</html>		
+</html>
