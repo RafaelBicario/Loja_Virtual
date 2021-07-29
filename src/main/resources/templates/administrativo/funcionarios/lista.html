@@ -3,6 +3,7 @@
 	   xmls:th="http://thymeleaf.org"
 	   xmls:layout="http://www.ultraq.net/thymeleaf/layout">
 <head>
+
     <title>Spring-Boot Básico</title>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -178,6 +179,7 @@
 	                        <th>Cargo</th>
 	                        <th>Salario Bruto</th>
 	                        <th>Ação</th>
+
 	                    </tr>
 	                    </thead>
 	                    <tbody>
@@ -201,13 +203,35 @@
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
 
-								<a class="btn btn-info btn-sm" th:href="@{/administrativo/funcionarios/remover/{id}(id=${funcionario.id})}" role="button">
-									<span class="oi oi-circle-x" title="Remover" aria-hidden="true"></span>
+								<a class="btn btn-info btn-sm" th:href="@{/administrativo/funcionarios/remover/{id}(id=${funcionario.id})}" role="button" onclick="myFunction()">
+									<span class="oi oi-circle-x" title="Remover" aria-hidden="true" ></span>
+
 								</a>
-<!--	                            <button id="btn_funcionarios/excluir/1" type="button" class="btn btn-danger btn-sm"-->
-<!--	                                    data-toggle="modal" data-target="#myModal">-->
-<!--	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>-->
-<!--	                            </button>-->
+
+<!--								<a class="btn btn-info btn-sm" th:href="@{/administrativo/funcionarios/remover/{id}(id=${funcionario.id})}" role="button">-->
+<!--									<span class="oi oi-book" title="Remover" aria-hidden="true"></span>-->
+<!--								</a>-->
+
+								<script>
+									function myFunction() {
+										alert("Funcionario Deletado!!!");
+									}
+								</script>
+<!--									<script>-->
+<!--										function funcao1(){-->
+<!--											var x;-->
+<!--											var r = confirm("Deseja confirmar Exclusão?");-->
+<!--											if(r==true)-->
+<!--											{-->
+<!--												x="você pressionou OK!";-->
+<!--											}-->
+<!--											else-->
+<!--											{-->
+<!--												x= "Você pressionou Cancelar!";-->
+<!--											}-->
+<!--											document.getElementById("demo").innerHTML=x;-->
+<!--										}-->
+<!--									</script>-->
 	                        </td>
 	                    </tr>
 	                    </tbody>
