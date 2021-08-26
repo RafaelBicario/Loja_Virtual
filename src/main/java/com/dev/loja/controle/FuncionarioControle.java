@@ -1,6 +1,7 @@
 package com.dev.loja.controle;
 
 import com.dev.loja.modelos.Funcionario;
+import com.dev.loja.repositorios.CidadeRepositorio;
 import com.dev.loja.repositorios.FuncionarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.Optional;
 
 @Controller
@@ -19,11 +21,15 @@ public class FuncionarioControle {
     @Autowired
     private FuncionarioRepositorio funcionarioRepositorio;
 
+    @Autowired
+    private CidadeRepositorio cidadeRepositorio;
+
 
     @GetMapping("administrativo/funcionarios/cadastrar")
     public ModelAndView cadastrar(Funcionario funcionario){
         ModelAndView mv = new ModelAndView("administrativo/funcionarios/cadastro");
         mv.addObject("funcionario",funcionario);
+        mv.addObject("listaCidades",cidadeRepositorio.findAll());
         return mv;
     }
 
