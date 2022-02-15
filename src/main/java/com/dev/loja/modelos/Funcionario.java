@@ -1,137 +1,166 @@
 package com.dev.loja.modelos;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 @Entity
-@Table(name="funcionario")
+@Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
-    public Funcionario() {
-        super ();
-    }
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType. AUTO)
-    private Long id;
-    private String nome;
-    private Double salarioBruto;
+	public Funcionario() {
+		super();
+	}
 
-    @Temporal(TemporalType.DATE)
-    private Date dataEntrada;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Temporal(TemporalType.DATE)
-    private Date dataSaida;
+	private String nome;
+	private Double salarioBruto;
+	@Temporal(TemporalType.DATE)
+	private Date dataEntrada;
+	@Temporal(TemporalType.DATE)
+	private Date dataSaida;
+	private String cargo;
+	@ManyToOne
+	private Cidade cidade;
+	private String logradouro;
+	private String numero;
+	private String complemento;
+	private String bairro;
+	private String uf;
+	private String cep;
+	private String email;
+	private String senha;
+	
+	public String getEmail() {
+		return email;
+	}
 
-    private String cargo;
-    @ManyToOne
-    private Cidade cidade;
-    private String logradouro;
-    private String numero;
-    private String complemento;
-    private String bairro;
-    private String uf;
-    private String cep;
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Double getSalarioBruto() {
-        return salarioBruto;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setSalarioBruto(Double salarioBruto) {
-        this.salarioBruto = salarioBruto;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public Date getDataEntrada() {
-        return dataEntrada;
-    }
+	public Double getSalarioBruto() {
+		return salarioBruto;
+	}
 
-    public void setDataEntrada(Date dataEntrada) {
-        this.dataEntrada = dataEntrada;
-    }
+	public void setSalarioBruto(Double salarioBruto) {
+		this.salarioBruto = salarioBruto;
+	}
 
-    public Date getDataSaida() {
-        return dataSaida;
-    }
+	public Date getDataEntrada() {
+		return dataEntrada;
+	}
 
-    public void setDataSaida(Date dataSaida) {
-        this.dataSaida = dataSaida;
-    }
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
 
-    public String getCargo() {
-        return cargo;
-    }
+	public Date getDataSaida() {
+		return dataSaida;
+	}
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
+	}
 
-    public Cidade getCidade() {return cidade; }
+	public String getCargo() {
+		return cargo;
+	}
 
-    public void setCidade(Cidade cidade) {this.cidade = cidade;}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 
-    public String getLogradouro() {
-        return logradouro;
-    }
+	public Cidade getCidade() {
+		return cidade;
+	}
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
 
-    public String getNumero() {
-        return numero;
-    }
+	public String getLogradouro() {
+		return logradouro;
+	}
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
 
-    public String getComplemento() {
-        return complemento;
-    }
+	public String getNumero() {
+		return numero;
+	}
 
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
-    public String getBairro() {
-        return bairro;
-    }
+	public String getComplemento() {
+		return complemento;
+	}
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
 
-    public String getUf() {
-        return uf;
-    }
+	public String getBairro() {
+		return bairro;
+	}
 
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
-    public String getCep() {
-        return cep;
-    }
+	public String getUf() {
+		return uf;
+	}
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 
 }
